@@ -89,7 +89,11 @@ function count(){
   }else{
     tax = taxCount * 0.45 - 15160
   }
-  $("#tax").val(tax)
+  if(tax>=0){
+  	$("#tax").val(tax)
+  }else{
+  	$("#tax").val('阁下生活已经足够困难，不用缴税了')
+  }
 }
 
 $(function(){
