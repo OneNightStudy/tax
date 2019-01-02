@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>扣税计算器</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.css" rel="stylesheet">
+  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<style>
+  .formBox{padding: 30px 20px;}
+</style>
+<body>
+<div class="formBox">
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label for="salary" class="col-sm-2 control-label">月薪</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="salary" value="10000">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="tax1" class="col-sm-2 control-label">三险(%)</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="tax1" value="10.2">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="tax2" class="col-sm-2 control-label">一金(%)</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="tax2"  value="5">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="tax3" class="col-sm-2 control-label">起征税</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="tax3" value="5000" disabled>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="tax4" class="col-sm-2 control-label">减免(住房/教育/老人/医疗等)</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="tax4" value="2000">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="tax5" class="col-sm-2 control-label">其他补充(补充住房公积金等)</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="tax5" value="0">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="tax" class="col-sm-2 control-label">应缴税额</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="tax" disabled>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-4">
+        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="count()">计算</button>
+      </div>
+    </div>
+  </form>
+</div>
+</body>
+<script>
+
+function count(){
+  var salary = $("#salary").val()
+  var tax1 = $("#tax1").val()
+  var tax2 = $("#tax2").val()
+  var tax3 = $("#tax3").val()
+  var tax4 = $("#tax4").val()
+  var tax5 = $("#tax5").val()
+  var taxCount = (salary * (1 - tax1/100 - tax2/100) - tax3 - tax4 - tax5)
+  var tax = 0
+  if(tax<=3000){
+    tax = taxCount * 0.03
+  }else if(tax<=12000){
+    tax = taxCount * 0.1 - 210
+  }else if(tax<=25000){
+    tax = taxCount * 0.2 - 1410
+  }else if(tax<=35000){
+    tax = taxCount * 0.25 - 2660
+  }else if(tax<=55000){
+    tax = taxCount * 0.3 - 4410
+  }else if(tax<=80000){
+    tax = taxCount * 0.35 - 7160
+  }else{
+    tax = taxCount * 0.45 - 15160
+  }
+  $("#tax").val(tax)
+}
+
+$(function(){
+  count()
+})
+</script>
+</html>
