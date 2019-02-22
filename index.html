@@ -15,7 +15,7 @@
         var videoElement = document.getElementById('videoElement');//使用id选择器找到第二步设置的dom元素
         var flvPlayer = flvjs.createPlayer({//创建一个新的flv播放器对象
             type: 'flv',//类型flv
-            url: 'http://cn.aaado.pw/sc.php?id=3119E5B5713AC0F03279F77DC9FD72A48ABAD9343CDBB333F0E6BF66B4D1E38E6B4FEEA832A770257231995802ABD45BFCEC4D6210CAFFEC563C0F02129B0E150F45B5AC8C6C68D54FA2A6&s=1.flv'//flv文件地址
+            url: '//cn.aaado.pw/sc.php?id=3119E5B5713AC0F03279F77DC9FD72A48ABAD9343CDBB333F0E6BF66B4D1E38E6B4FEEA832A770257231995802ABD45BFCEC4D6210CAFFEC563C0F02129B0E150F45B5AC8C6C68D54FA2A6&s=1.flv'//flv文件地址
         });
         flvPlayer.attachMediaElement(videoElement);//将flv视频装载进video元素内
         flvPlayer.load();//载入视频
